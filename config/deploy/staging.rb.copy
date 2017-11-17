@@ -1,0 +1,10 @@
+server '192.155.89.37', user: 'live', roles: %w{app db web}
+
+set :application, 'Events'
+
+set :deploy_to, '/home/live/Events'
+
+set :repo_url, 'git@gitrepos.com:rubyonrails/Events.git'
+
+
+set :tmp_dir, '/home/live/tmp'

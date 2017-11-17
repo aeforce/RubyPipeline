@@ -1,0 +1,21 @@
+== README
+
+Things you may want to cover:
+
+* Define Ruby version in .ruby-version
+
+* Define Ruby Gems version in .ruby-gemset
+
+* Take copy of all *.copy files
+
+* Define all env. variables in .evn.production (depending on project env.)
+
+* Define server details in config/deploy/production.rb
+
+* Push latest code to github
+
+* Run command to push configuration files to server >> cap production config:push
+
+* Run command to push evn configuration files to server >> cap production config:push_env
+
+* Run command to push latest code to server from github >> cap production deploy

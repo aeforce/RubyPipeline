@@ -1,0 +1,40 @@
+.x_panel
+  .x_title
+    %h2 Edit User
+    .clearfix
+  .x_content
+    %div.row
+      .col-md-6
+        = simple_form_for(@user, url: update_user_user_path(@user) ) do |f|
+          = f.error_notification
+          = f.input :first_name, autofocus: true
+          = f.input :last_name
+          = f.input :phone
+          - if @current_user_role == AppConstants::COMPANY || @current_user_role == AppConstants::MASTER
+            %strong= 'Total Limit Amount:'
+            = @user.limit_amount
+            %br
+            %strong= 'Used Limit Amount:'
+            = @user.amount_used
+            %br
+            %strong= 'Remaining Limit Amount:'
+            = @user.remaining_amount
+            %br
+            %br
+            = f.input :limit_amount, input_html: { value: '0' }
+          - if @current_user_role == AppConstants::MASTER
+            = f.input :commission
+
+          .form-actions
+            = link_to 'Back', users_path, class: 'btn btn-default'
+            = f.button :submit, class: 'btn btn-primary'
+
+      .col-md-6
+        %strong= 'Total Limit Amount:'
+        = current_user.limit_amount
+        %br
+        %strong= 'Used Limi Amount:'
+        = current_user.amount_used
+        %br
+        %strong= 'Remaining Limit Amount:'
+        = current_user.remaining_amount

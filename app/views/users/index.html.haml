@@ -1,0 +1,35 @@
+.x_panel
+  .x_title
+    %h2 Users
+    - if can? :create, User
+      = link_to 'Add User', new_user_path, class: 'btn btn-primary pull-right'
+    .clearfix
+  .x_content
+    %table.table.table-striped.table-hover
+      %thead
+        %tr
+          %th First Name
+          %th Last Name
+          %th Email
+          %th Phone
+          %th Limit Amount
+          %th Amount Used
+          %th Remaining Amount
+          %th Role
+          %th Actions
+      %tbody
+        - @users&.each do |user|
+          %tr
+            %td= user.first_name
+            %td= user.last_name
+            %td= user.email
+            %td= user.phone
+            %td= user.limit_amount
+            %td= user.amount_used
+            %td= user.remaining_amount
+            %td= user.try(:roles).try(:last).try(:name) || 'N/A'
+            %td
+              - if can? :update, user
+                = link_to 'Edit', edit_user_path(user), class: 'btn btn-sm btn-primary'
+              - if can? :destroy, user
+                = link_to 'Delete', '#', class: 'btn btn-sm btn-danger'
